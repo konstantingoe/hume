@@ -2,7 +2,7 @@
 % Please edit documentation in R/spearman.R
 \name{spearman}
 \alias{spearman}
-\title{Calculate Spearman's rho}
+\title{Spearman's rho}
 \usage{
 spearman(x, y)
 }

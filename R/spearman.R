@@ -1,4 +1,5 @@
-#' Calculate Spearman's rho
+#' @title Spearman's rho
+#' @description Calculate Spearman's rho
 #'
 #' @param x numeric vector
 #' @param y numeric vector
