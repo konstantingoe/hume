@@ -1,15 +1,27 @@
-Package: hume
 Type: Package
-Title: What the Package Does (Title Case)
+Package: hume
+Title: High-dimensional Undirected Mixed graph Estimation
 Version: 0.1.0
-Author: Who wrote it
+Author: person("Göbler", "Konstantin", email = "konstantin.goebler@tum.de",
+        role = c("aut", "cre"))
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Given some (high-dimensional) data set where both discrete and continuous variables are present,
+             the package offers functionality in order to estimate an undirected graph. It is assumed that all 
+             discrete variables are ordinal. If nominal variables (where the levels are unordered) are present,
+             the user is asked to form a dummy system.     Discrete variables are assumed to have some latent continuous analogs,
+             that are some monotone transformed version of standard Gaussians. The functions `mixed.graph.gauss()` and `mixed.graph.nonpara()` 
+             estimate the latent precision matrix of these (transformed) continuous variables where the former assumes
+             no transformation (latent Gaussian model) and the latter assumes monotone and differentiable transformation functions
+             (latent Gaussian copula model).    The latter is more general and should always be used except for when the user 
+             knows that the latent variables are Gaussian (this will almost never be the case). 
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.2.0
+Imports: 
+    glasso,
+    huge,
+    stats
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.0
