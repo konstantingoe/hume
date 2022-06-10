@@ -1,7 +1,7 @@
 Type: Package
 Package: hume
 Title: High-dimensional Undirected Mixed graph Estimation
-Version: 0.1.0
+Version: 1.0.0
 Author: person("Göbler", "Konstantin", email = "konstantin.goebler@tum.de",
         role = c("aut", "cre"))
 Maintainer: The package maintainer <yourself@somewhere.net>
