@@ -5,7 +5,6 @@
 #' @param y numeric vector
 #'
 #' @return a number in [-1,1]
-#' @export
 #'
 #' @examples
 #' x <- sample(10,10)

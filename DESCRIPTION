@@ -16,9 +16,13 @@ Description: Given some (high-dimensional) data set where both discrete and cont
              knows that the latent variables are Gaussian (this will almost never be the case). 
 License: MIT + file LICENSE
 Imports: 
+    corpcor,
     glasso,
     huge,
-    stats
+    Matrix,
+    polycor,
+    stats,
+    stringr
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

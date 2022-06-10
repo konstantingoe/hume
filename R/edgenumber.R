@@ -6,9 +6,6 @@
 #' @param cut thresholding parameter when entries are treated to be non-zero.
 #'
 #' @return a number corresponding to the number of edges present in the underlying graph.
-#' @export
-#'
-#' @examples
 edgenumber <- function(Precision=Precision, cut=0){
   sum((abs(Precision) > (0 + cut))[lower.tri((abs(Precision) > (0 + cut)))])
 }

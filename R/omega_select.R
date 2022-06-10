@@ -1,10 +1,10 @@
 #' @title Precision Matrix Selection
-#' @description For a given glasso path (in the form of a \linkS4class{huge} object) the
-#' function recalculates the unpenalized likelihood via the \code{\link[pkg:func]{pkg::func(glasso)}} function
+#' @description For a given glasso path (in the form of a `huge` object) the
+#' function recalculates the unpenalized likelihood via the `glasso()` function
 #' and selects the model, i.e. the graph, with the smallest eBIC
 #' \deqn{    eBIC_\theta = -2 \ell^{(n)}(\hat{\Omega}(E)) + \Abs{E} \log(n) + 4 \Abs{E}\theta \log(d)}
 #'(see Foygel & Drton (2010)).
-#' The user may set `partial = TRUE` which converts the entries in the resulting precision
+#' By default `partial = TRUE` which converts the entries in the resulting precision
 #' matrix to partial correlations.
 #'
 #' @param x glasso path contained in a \linkS4class{huge}
@@ -14,15 +14,13 @@
 #' @param partial if set to `TRUE` the resulting precision matrix entries are negated so as to get partial correlations
 #'
 #' @return a symmetrix matrix of the same dimension as `s`
-#' @export
 #'
 #' @references
 #' Foygel, Rina and Drton, Mathias. (2010).
 #' Extended Bayesian Information Criteria for Gaussian Graphical Models.
 #' In: Lafferty, J., Williams, C., Shawe-Taylor, J., Zemel, R. andCulotta,  A.  (editors),
 #' Advances  in  Neural  Information  Processing  Systems,  Volume  23.Curran Associates, Inc. pp. 604–612.
-#' @examples
-omega.select <- function(x=x, param = param, n=n, s = s, partial = F){
+omega.select <- function(x=x, param = param, n=n, s = s, partial = T){
   if (!requireNamespace("stats", quietly = TRUE)) {
     stop(
       "Package \"stats\" must be installed to use this function.",

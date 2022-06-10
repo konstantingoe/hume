@@ -4,7 +4,7 @@
 \alias{omega.select}
 \title{Precision Matrix Selection}
 \usage{
-omega.select(x = x, param = param, n = n, s = s, partial = F)
+omega.select(x = x, param = param, n = n, s = s, partial = T)
 }
 \arguments{
 \item{x}{glasso path contained in a \linkS4class{huge}}
@@ -21,12 +21,12 @@ omega.select(x = x, param = param, n = n, s = s, partial = F)
 a symmetrix matrix of the same dimension as `s`
 }
 \description{
-For a given glasso path (in the form of a \linkS4class{huge} object) the
-function recalculates the unpenalized likelihood via the \code{\link[pkg:func]{pkg::func(glasso)}} function
+For a given glasso path (in the form of a `huge` object) the
+function recalculates the unpenalized likelihood via the `glasso()` function
 and selects the model, i.e. the graph, with the smallest eBIC
 \deqn{    eBIC_\theta = -2 \ell^{(n)}(\hat{\Omega}(E)) + \Abs{E} \log(n) + 4 \Abs{E}\theta \log(d)}
 (see Foygel & Drton (2010)).
-The user may set `partial = TRUE` which converts the entries in the resulting precision
+By default `partial = TRUE` which converts the entries in the resulting precision
 matrix to partial correlations.
 }
 \references{
