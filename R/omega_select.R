@@ -7,14 +7,14 @@
 #' By default `partial = TRUE` which converts the entries in the resulting precision
 #' matrix to partial correlations.
 #'
-#' @param x glasso path contained in a \linkS4class{huge}
+#' @param x glasso path contained in a `huge` object
 #' @param param \eqn{\theta} parameter for additional high-dimensional penalty
 #' @param n sample size for likelihood recalculation
 #' @param s sample covariance or correlation matrix that was used to estimate the glasso path
 #' @param partial if set to `TRUE` the resulting precision matrix entries are negated so as to get partial correlations
 #'
 #' @return a symmetrix matrix of the same dimension as `s`
-#'
+#' @export
 #' @references
 #' Foygel, Rina and Drton, Mathias. (2010).
 #' Extended Bayesian Information Criteria for Gaussian Graphical Models.

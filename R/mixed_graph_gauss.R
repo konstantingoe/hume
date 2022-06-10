@@ -16,7 +16,7 @@
 #'   \item Edgenumber - The number of edges in the graph
 #'   \item Max Degree - The largest number of connections across all nodes in the graph.
 #' }
-#'
+#' @export
 #' @examples
 #' require(huge)
 #' latent.data = huge::huge.generator(n = 50, d = 60, graph = "hub", g = 4)$data

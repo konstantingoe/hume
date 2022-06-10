@@ -7,7 +7,7 @@
 omega.select(x = x, param = param, n = n, s = s, partial = T)
 }
 \arguments{
-\item{x}{glasso path contained in a \linkS4class{huge}}
+\item{x}{glasso path contained in a `huge` object}
 
 \item{param}{\eqn{\theta} parameter for additional high-dimensional penalty}
 
