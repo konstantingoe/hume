@@ -1,0 +1,47 @@
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# hume
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The hume package implements the latent Gaussian and the latent Gaussian copula modeling approaches to learning mixed high dimensional graphs in a fast and easy-to-use manner.  
+
+## Installation
+
+You can install the development version of hume from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("konstantingoe/hume")
+```
+
+## Example
+
+The package can be applied on continuous only (then it boils down to the nonparanormal SKEPTIC) and any mix of discrete and continuous variables.
+
+```{r example}
+library(hume)
+library(NHSRdatasets) # load synthetic example dataset 
+data(synthetic_news_data)
+
+Omega <- mixed.graph.nonpara(synthetic_news_data, param = 0) # set additional high-dim penalty to 0
+Omega
+
+require(igraph)
+#set names
+colnames(Omega$`Adjacency Matrix`) <- rownames(Omega$`Adjacency Matrix`) <- names(synthetic_news_data)
+# plot from adjacency matrix
+plot(graph_from_adjacency_matrix(Omega$`Adjacency Matrix`, mode = "undirected", diag = F),vertex.size=30)
+```
+
+
