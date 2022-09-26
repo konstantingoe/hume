@@ -43,7 +43,7 @@ omega.select <- function(x=x, param = param, n=n, s = s, partial = T){
     huge_path[upper.tri(huge_path, diag = T)] <- 1
     zero_mat <- which(huge_path == 0, arr.ind = T)
     loglik <- suppressWarnings(glasso::glasso(s = s, rho = 0, nobs = n, zero = zero_mat)$loglik)
-    eBIC[ind] <- -2*loglik + edge*log(n) + 4* edge * param * log(d)
+    eBIC[ind] <- -2*loglik + edge*log(n) + 4*edge*param*log(d)
   }
 
   Omega_hat <- x$icov[[which.min(eBIC)]]

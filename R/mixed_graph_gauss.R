@@ -75,12 +75,20 @@ mixed.graph.gauss <- function(data = data, verbose = T, nlam = 50, param = .1){
                                                                                                                         arr.ind = T)[,1]), collapse = ",")),
                                                                                         ' is close to boundary. Inverse might be misleading. '))
 
+  if (!requireNamespace("corpcor", quietly=TRUE))
+    stop("Please install package \"corpcor\".")
+  if (!requireNamespace("Matrix", quietly=TRUE))
+    stop("Please install package \"Matrix\".")
+
+  ### eigenvalue decomposition and truncate eigenvalues at 0
+
   if (!corpcor::is.positive.definite(rho)) {
+    initial_mat_singular <- T
     rho_pd <- as.matrix(Matrix::nearPD(rho, corr = T, keepDiag = T)$mat)
   } else {
+    initial_mat_singular <- F
     rho_pd <- rho
   }
-  #diag(rho_pd) <- 1
 
   if (!requireNamespace("huge", quietly=TRUE))
     stop("Please install package \"huge\".")
@@ -95,7 +103,7 @@ mixed.graph.gauss <- function(data = data, verbose = T, nlam = 50, param = .1){
   adj_estimate <- abs(Omega_hat) > 0
 
   output <- list("Estimated Precision Matrix" = Omega_hat, "Adjacency Matrix" = adj_estimate,
-                 "Sample Correlation Matrix" = rho_pd, "Edgenumber" = number_edges, "Max Degree" = max_degree)
+                 "Sample Correlation Matrix" = rho_pd, "Edgenumber" = number_edges, "Max Degree" = max_degree, "initial_mat_singular" = initial_mat_singular)
   return(output)
 }
 
