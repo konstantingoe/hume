@@ -1,3 +1,7 @@
+---
+output: github_document
+---
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
@@ -29,19 +33,13 @@ devtools::install_github("konstantingoe/hume")
 
 The package can be applied on continuous only (then it boils down to the nonparanormal SKEPTIC) and any mix of discrete and continuous variables.
 
-```{r example}
+```{r}
 library(hume)
 library(NHSRdatasets) # load synthetic example dataset 
 data(synthetic_news_data)
-
-Omega <- mixed.graph.nonpara(synthetic_news_data, param = 0) # set additional high-dim penalty to 0
+Omega <- mixed.graph.nonpara(synthetic_news_data, param = 0, names = T) # set additional high-dim penalty to 0
 Omega
-
 require(igraph)
-#set names
-colnames(Omega$`Adjacency Matrix`) <- rownames(Omega$`Adjacency Matrix`) <- names(synthetic_news_data)
 # plot from adjacency matrix
 plot(graph_from_adjacency_matrix(Omega$`Adjacency Matrix`, mode = "undirected", diag = F),vertex.size=30)
 ```
-
-

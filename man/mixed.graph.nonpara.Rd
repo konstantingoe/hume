@@ -4,7 +4,13 @@
 \alias{mixed.graph.nonpara}
 \title{Mixed Graph Estimation under Nonparanormal assumption}
 \usage{
-mixed.graph.nonpara(data = data, verbose = T, nlam = 50, param = 0.1)
+mixed.graph.nonpara(
+  data = data,
+  verbose = T,
+  nlam = 50,
+  param = 0.1,
+  names = F
+)
 }
 \arguments{
 \item{data}{A data set of dimension \eqn{n \times d}}
@@ -14,6 +20,8 @@ mixed.graph.nonpara(data = data, verbose = T, nlam = 50, param = 0.1)
 \item{nlam}{Length of the glasso path. Default is 50}
 
 \item{param}{Value to which the additional dimensionality penalty in the eBIC should be set. Default is .1}
+
+\item{names}{Can be either boolean of a character vector of length \eqn{d}. Default is `FALSE`}
 }
 \value{
 A list with the following elements is returned:
