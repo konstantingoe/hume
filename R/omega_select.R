@@ -2,7 +2,7 @@
 #' @description For a given glasso path (in the form of a `huge` object) the
 #' function recalculates the unpenalized likelihood via the `glasso()` function
 #' and selects the model, i.e. the graph, with the smallest eBIC
-#' \deqn{    eBIC_\theta = -2 \ell^{(n)}(\hat{\Omega}(E)) + \Abs{E} \log(n) + 4 \Abs{E}\theta \log(d)}
+#' \deqn{    eBIC_\theta = -2 \ell^{(n)}(\hat{\Omega}(E)) + \lvert E \rvert \log(n) + 4 \lvert E \rvert \theta \log(d)}
 #'(see Foygel & Drton (2010)).
 #' By default `partial = TRUE` which converts the entries in the resulting precision
 #' matrix to partial correlations.

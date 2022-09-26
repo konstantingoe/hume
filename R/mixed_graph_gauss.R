@@ -69,10 +69,10 @@ mixed.graph.gauss <- function(data = data, verbose = T, nlam = 50, param = .1){
   if (!requireNamespace("stringr", quietly=TRUE))
     stop("Please install package \"stringr\".")
   pair <- rho[lower.tri(rho)]
-  if(any(abs(pair) > .9))
+  if (any(abs(pair) > .9))
     sapply(seq_along(rho[lower.tri(rho)][which(abs(pair) > .95)]), function (k) warning(paste0('Correlation of the pair ',
                                                                                                stringr::str_c(as.character(which(rho[lower.tri(rho)][which(abs(pair) > .9)][k] == rho,
-                                                                                                                        arr.ind = T)[,1]), collapse = ",")),
+                                                                                                                                 arr.ind = T)[,1]), collapse = ",")),
                                                                                         ' is close to boundary. Inverse might be misleading. '))
 
   if (!requireNamespace("corpcor", quietly=TRUE))
@@ -89,14 +89,17 @@ mixed.graph.gauss <- function(data = data, verbose = T, nlam = 50, param = .1){
     initial_mat_singular <- F
     rho_pd <- rho
   }
+  #diag(rho_pd) <- 1
+
 
   if (!requireNamespace("huge", quietly=TRUE))
     stop("Please install package \"huge\".")
+
   #now with rho_pd we have the sample correlation matrix
   huge.result <- huge::huge(rho_pd,nlambda=nlam,method="glasso",verbose=FALSE)
   if (!requireNamespace("glasso", quietly=TRUE))
-      stop("Please install package \"glasso\".")
-  Omega_hat <- omega.select(x=huge.result, n, s = rho_pd, param, partial = T)
+    stop("Please install package \"glasso\".")
+  Omega_hat <- hume::omega.select(x=huge.result, n=n, s = rho_pd, param = param, partial = T)
   number_edges <- edgenumber(Omega_hat)
   max_degree <- max(sapply(1:d, function(k) (sum(abs(Omega_hat[k,]) > 0) -1)))
 
