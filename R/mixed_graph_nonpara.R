@@ -7,6 +7,8 @@
 #' @param verbose Prints some useful information, defaults to `TRUE`
 #' @param nlam Length of the glasso path. Default is 50
 #' @param param Value to which the additional dimensionality penalty in the eBIC should be set. Default is .1
+#' @param names Can be either boolean of a character vector of length \eqn{d}. Default is `FALSE`
+
 #'
 #' @return A list with the following elements is returned:
 #' \itemize{
@@ -32,7 +34,7 @@
 #' all.equal(mixed.graph$`Adjacency Matrix`, latent.graph$`Adjacency Matrix`)
 #'
 
-mixed.graph.nonpara <- function(data = data, verbose = T, nlam = 50, param = .1){
+mixed.graph.nonpara <- function(data = data, verbose = T, nlam = 50, param = .1, names = F){
   if (sum(sapply(data, is.factor)) == 0 & verbose == T){
     cat("Warning, there are no factors in the input data.
         I'm checking your input and declare factors for level(x)<20")
@@ -96,11 +98,19 @@ mixed.graph.nonpara <- function(data = data, verbose = T, nlam = 50, param = .1)
   huge.result <- huge::huge(rho_pd,nlambda=nlam,method="glasso",verbose=FALSE)
   if (!requireNamespace("glasso", quietly=TRUE))
       stop("Please install package \"glasso\".")
-  Omega_hat <- omega.select(x=huge.result, n=n, s = rho_pd, param = param, partial = T)
+  Omega_hat <- hume::omega.select(x=huge.result, n=n, s = rho_pd, param = param, partial = T)
   number_edges <- edgenumber(Omega_hat)
   max_degree <- max(sapply(1:d, function(k) (sum(abs(Omega_hat[k,]) > 0) -1)))
 
   adj_estimate <- abs(Omega_hat) > 0
+
+  if (!missing(names) & !is.logical(names)){
+    if (length(names) != d)
+      stop("Name vector has to be the same length as number of columns in data matrix")
+    colnames(Omega_hat) <- rownames(Omega_hat) <- colnames(adj_estimate) <- rownames(adj_estimate)  <- colnames(rho_pd) <- rownames(rho_pd) <- names
+  } else if (!missing(names) & is.logical(names) & names == T){
+    colnames(Omega_hat) <- rownames(Omega_hat) <- colnames(adj_estimate) <- rownames(adj_estimate)  <- colnames(rho_pd) <- rownames(rho_pd) <- names(data)
+  }
 
   output <- list("Estimated Precision Matrix" = Omega_hat, "Adjacency Matrix" = adj_estimate,
                  "Sample Correlation Matrix" = rho_pd, "Edgenumber" = number_edges, "Max Degree" = max_degree, "initial_mat_singular" = initial_mat_singular)
